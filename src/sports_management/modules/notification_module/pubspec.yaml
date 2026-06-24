@@ -1,0 +1,23 @@
+name: notification_module
+description: "Lightweight notification module for admin system notifications."
+version: 0.0.1
+publish_to: "none"
+
+environment:
+  sdk: ^3.12.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.6
+  go_router: ^14.2.0
+  get_it: ^8.0.2
+  shared_preferences: ^2.3.0
+  server_module:
+    path: ../server_module
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0

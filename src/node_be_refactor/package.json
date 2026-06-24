@@ -1,0 +1,42 @@
+{
+  "name": "node_be_refactor",
+  "version": "1.0.0",
+  "description": "REST API Backend",
+  "main": "src/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/main.js",
+    "dev": "nodemon src/main.js",
+    "migrate:email-verification": "node scripts/backfill-email-verification.js",
+    "migrate:firebase-auth": "node scripts/import-users-to-firebase.js",
+    "migrate:firebase-uid-index": "node scripts/migrate-firebase-uid-index.js",
+    "report:orphan-firebase-users": "node scripts/report-orphan-firebase-users.js",
+    "activate:legacy-test-users": "node scripts/activate-legacy-test-users.js",
+    "test:email-verification": "node --test scripts/email-verification-otp.test.js",
+    "test:firebase-uid-index": "node --test scripts/firebase-uid-index.test.js",
+    "smoke:matching": "node scripts/matching-smoke.js",
+    "smoke:booking-access": "node scripts/booking-access-smoke.js",
+    "smoke:court-report": "node scripts/court-performance-report-smoke.js",
+    "smoke:advanced-report": "node scripts/advanced-performance-report-smoke.js",
+    "smoke:court-block": "node scripts/court-block-smoke.js",
+    "smoke:booking-availability": "node scripts/booking-availability-smoke.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^1.41.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "firebase-admin": "^13.10.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.24.0",
+    "multer": "^2.1.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^8.0.10",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

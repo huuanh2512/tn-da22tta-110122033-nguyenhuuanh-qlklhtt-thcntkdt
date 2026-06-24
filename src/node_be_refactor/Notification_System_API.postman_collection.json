@@ -1,0 +1,427 @@
+{
+  "info": {
+    "name": "Notification System API",
+    "description": "Collection for testing Notification System APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "pm.environment.set('jwt_token', jsonData.token);",
+                  "pm.environment.set('current_user_id', jsonData.user._id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notification - Retrieve",
+      "item": [
+        {
+          "name": "Get All Notifications",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/notification?skip=0&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["notification"],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Notifications (Page 2)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/notification?skip=10&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["notification"],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "10"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notification - Create",
+      "item": [
+        {
+          "name": "Create Booking Notification",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{recipient_user_id}}\",\n  \"title\": \"Đặt sân thành công\",\n  \"content\": \"Lịch đặt sân của bạn vào ngày 2026-06-15 đã được gửi và đang chờ duyệt.\",\n  \"type\": \"BOOKING\",\n  \"metadata\": {\n    \"bookingId\": \"123456\",\n    \"link\": \"/bookings/123456\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/notification",
+              "host": ["{{base_url}}"],
+              "path": ["notification"]
+            }
+          }
+        },
+        {
+          "name": "Create Payment Notification",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{recipient_user_id}}\",\n  \"title\": \"Thanh toán thành công\",\n  \"content\": \"Thanh toán 500,000 VNĐ cho lịch đặt sân đã được xác nhận.\",\n  \"type\": \"PAYMENT\",\n  \"metadata\": {\n    \"paymentId\": \"789456\",\n    \"bookingId\": \"123456\",\n    \"link\": \"/payments/789456\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/notification",
+              "host": ["{{base_url}}"],
+              "path": ["notification"]
+            }
+          }
+        },
+        {
+          "name": "Create System Notification",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{recipient_user_id}}\",\n  \"title\": \"Cập nhật hệ thống\",\n  \"content\": \"Hệ thống sẽ bảo trì vào 2AM-4AM hôm nay. Xin lỗi vì sự bất tiện.\",\n  \"type\": \"SYSTEM\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/notification",
+              "host": ["{{base_url}}"],
+              "path": ["notification"]
+            }
+          }
+        },
+        {
+          "name": "Create Promotion Notification",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{recipient_user_id}}\",\n  \"title\": \"Khuyến mãi đặc biệt\",\n  \"content\": \"Giảm 30% khi đặt sân vào cuối tuần. Mã code: WEEKEND30\",\n  \"type\": \"PROMOTION\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/notification",
+              "host": ["{{base_url}}"],
+              "path": ["notification"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notification - Update",
+      "item": [
+        {
+          "name": "Mark Notification as Read",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/notification/{{notification_id}}/read",
+              "host": ["{{base_url}}"],
+              "path": ["notification", "{{notification_id}}", "read"]
+            }
+          }
+        },
+        {
+          "name": "Mark All Notifications as Read",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/notification/mark-all-read",
+              "host": ["{{base_url}}"],
+              "path": ["notification", "mark-all-read"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "FCM - Device Registration",
+      "item": [
+        {
+          "name": "Register FCM Token",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"eYdYc0JXOVJNRkM3Uk9oeFltSkZSV1JST0VNNU5UYzVOMmR5TVRObU0yUkJNakZHTkRKRk1UaFRWREJPTWpGSFIwRTJSRkkyTTI0d1JUVTVRME54TlUxWVVsRk1SMGg0TTA5TFNVeFhWakZOVms4eE9EazVSbmd4VUZGVVRVSllVSGRXTWxkR1NVRlNWRkF3VEZSQmQwNVdWa1JPUjFGc1UzcEJkMDAxVWpCTlZ6VTFRMjFTYldkWVRqSkZSRTUwUVQwOVQyRm5NVXRCVFV0VVJGRjBUMjFCVTBkUldGZFVRMlJTTWsweFFXZFZRa0pRVVhOQ2QxVXlSbnBCU0UxTVQwUk5kMDFXVGpCTmVEbFVWWGRHYW1ORlNrSmFWMVZsY0VOVGFVNUFVVKFFR1JAVFhwQlEwSm5UVGR5YVU5VVVYVlJWRUYzVFVGdFIwTkVRVEZOUkZKWFFXZEdWa0Z0VmpKUFZuQjZWMjEzZWsxRVNYbE5SMUo2VFhwQk1FMUVWbXRCVkZGa1UwTkJkMFZFUjJ0SVRWRjNSMEo1WW5gNlZ6MDk=\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/user/register-fcm",
+              "host": ["{{base_url}}"],
+              "path": ["user", "register-fcm"]
+            }
+          }
+        },
+        {
+          "name": "Remove FCM Token",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"eYdYc0JXOVJNRkM3Uk9oeFltSkZSV1JST0VNNU5UYzVOMmR5TVRObU0yUkJNakZHTkRKRk1UaFRWREJPTWpGSFIwRTJSRkkyTTI0d1JUVTURRJVDJZWUN0JFSEkzVEVKU2QwWlhSRTVCU0UxTlIwRlhWbU4zYTBGNFlVRlROMDlVUVhKRmEwRkxUVk5TUTBKUVVtdEJSRkJrVkd0QlZGTlVUMJVRSEJhVm5CRmVrMXlTbXBWTWpCRlVtczBOMk5VUVhSWFJGTjBUMjEzYWsxRVNYbE5SMUo2VFhwQk1FMUVWbXRCVkZGa1UwTkJkMFZFUjJ0SVRWRjNSMEo1WW5gNlZ6MDk=\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/user/remove-fcm",
+              "host": ["{{base_url}}"],
+              "path": ["user", "remove-fcm"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "current_user_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "recipient_user_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "notification_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

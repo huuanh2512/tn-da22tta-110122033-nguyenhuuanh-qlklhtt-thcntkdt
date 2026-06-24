@@ -1,0 +1,165 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "sports_management",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "sports_management (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "sports_management (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "app_module",
+            "cwd": "modules\\app_module",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "app_module (profile mode)",
+            "cwd": "modules\\app_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "app_module (release mode)",
+            "cwd": "modules\\app_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "authentication_module",
+            "cwd": "modules\\authentication_module",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "authentication_module (profile mode)",
+            "cwd": "modules\\authentication_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "authentication_module (release mode)",
+            "cwd": "modules\\authentication_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "booking_module",
+            "cwd": "modules\\booking_module",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "booking_module (profile mode)",
+            "cwd": "modules\\booking_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "booking_module (release mode)",
+            "cwd": "modules\\booking_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "facility_module",
+            "cwd": "modules\\facility_module",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "facility_module (profile mode)",
+            "cwd": "modules\\facility_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "facility_module (release mode)",
+            "cwd": "modules\\facility_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "payment_module",
+            "cwd": "modules\\payment_module",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "payment_module (profile mode)",
+            "cwd": "modules\\payment_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "payment_module (release mode)",
+            "cwd": "modules\\payment_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "server_module",
+            "cwd": "modules\\server_module",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "server_module (profile mode)",
+            "cwd": "modules\\server_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "server_module (release mode)",
+            "cwd": "modules\\server_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "user_management_module",
+            "cwd": "modules\\user_management_module",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "user_management_module (profile mode)",
+            "cwd": "modules\\user_management_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "user_management_module (release mode)",
+            "cwd": "modules\\user_management_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

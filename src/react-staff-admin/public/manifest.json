@@ -1,0 +1,22 @@
+{
+  "short_name": "Sport Energy",
+  "name": "Sport Energy",
+  "icons": [
+    {
+      "src": "sport-energy-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "sport-energy-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0788e9",
+  "background_color": "#ffffff"
+}

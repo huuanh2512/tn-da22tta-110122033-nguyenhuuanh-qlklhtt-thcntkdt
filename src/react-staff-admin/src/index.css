@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    margin: 0;
+  }
+
+  /* Custom scrollbar for timelines and tables */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ink-muted/20 rounded-full hover:bg-ink-muted/40;
+  }
+}
+
+/* Glassmorphism utility card styling */
+.glass-card {
+  @apply bg-surface-1/80 backdrop-blur-md border border-semantic-border/40 shadow-sm;
+}
+
+.dark .glass-card {
+  @apply bg-surface-dark1/80 backdrop-blur-md border border-semantic-borderDark/40 shadow-sm;
+}
